@@ -26,12 +26,19 @@ def exact_div(x, y):
     return x // y
 
 
-def str2bool(string):
-    str2val = {"True": True, "False": False}
+def str2bool(string: str) -> bool:
+    """Convert a string representation of truth to ``True`` or ``False``.
+
+    Accepts common textual representations in a case-insensitive manner, such as
+    ``"true"``, ``"false"``, ``"1"``, and ``"0"``.  Raises ``ValueError`` if the
+    input is not recognized.
+    """
+
+    string = string.strip().lower()
+    str2val = {"true": True, "false": False, "1": True, "0": False}
     if string in str2val:
         return str2val[string]
-    else:
-        raise ValueError(f"Expected one of {set(str2val.keys())}, got {string}")
+    raise ValueError(f"Expected one of {set(str2val.keys())}, got {string}")
 
 
 def optional_int(string):
